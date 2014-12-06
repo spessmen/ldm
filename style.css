@@ -1,0 +1,307 @@
+
+/***************************************************************
+ 
+ LDM Doc Stylesheet
+ ----------------------
+ Good enough
+
+***************************************************************/
+
+/**** Colors **************************************************/
+
+/* CSS doesn't have fucking variables (!) so this is just fyi
+ * The script will actually replace these (allowing quick theme
+ * sets and generating half of these based on a few inputs), 
+ * since i'm going to write it in a real fucking language.
+ *
+ * Seriously, this shit makes even DM look good.
+ */ 
+
+/*  BG:       rgb( 224 , 224 , 224 )
+ *  BGPop:    rgb( 255 , 255 , 255 )
+ *  BGFade:   rgb( 208 , 208 , 208 )
+ *  Text:     rgb(  32 ,  32 ,  32 )
+ *  TextFade: rgb(  48 ,  48 ,  48 )
+ *  
+ *  QuoteL:   rgb(   0 ,  96 ,   0 ) 
+ *  QuoteD:   rgb(   0 ,  48 ,   0 )
+ *
+ *  WarnL:    rgb( 160 ,   0 ,   0 ) 
+ *  WarnD:    rgb(  64 ,   0 ,   0 ) 
+ *
+ *  DepL:     rgb(  56 ,  56 ,  56 )
+ *  DepD:     rgb(  32 ,  32 ,  32 )
+ *
+ */
+
+/**** Fonts ***************************************************/
+
+@font-face{ /* Main font */
+	font-family: Ubuntu ;
+	src: url(fonts/ubuntu/Ubuntu.ttf) ;
+	}
+
+@font-face{ /* Headers */
+	font-family: UbuntuBold ;
+	src: url(fonts/ubuntu/Ubuntu-B.ttf) ;
+	}
+
+@font-face{ /* Secondary font */
+	font-family: DroidSansMono ;
+	src: url(fonts/droid/DroidSansMono.ttf) ;
+	}
+
+@font-face{ /* For symbols */
+	font-family: DroidSerif ;
+	src: url(fonts/droid/DroidSerif.ttf) ;
+	}
+
+/**** Base ****************************************************/
+
+hr{border-color: rgb(/*TextFade*/48,48,48) }
+
+hr.body{border-color: rgb(/*BG*/224,224,224) }
+
+body, html{
+	height: 100% ; /* Contents, all the way down */
+	background-color: rgb(/*BG*/224,224,224) ;
+	color: rgb(/*Text*/32,32,32) ;
+	font-family: Ubuntu, Tahoma, Verdana, sans-serif;
+	font-size: 12pt ; 
+	padding: 0 ; /* Why is this not default? */
+	margin: 0 ; /* Same with this */
+	max-width: 896px ; /* Decent max width I guess */
+	}
+
+b{
+	font-family: UbuntuBold, Tahoma, Verdana, sans-serif ;
+	font-weight: normal ;
+	}
+
+/**** Lists ***************************************************/
+
+ul{
+	list-style-type: square ;
+	margin: .5em ;
+	padding-left: 1.2em ;
+	}
+
+ul.nav{   font-size: 75% }
+ul.block{ padding: 1em   }
+
+/**** Links ***************************************************/
+
+a:link,a:visited,a:hover{
+	text-decoration: none ;
+	color: inherit ;
+	}
+
+a.list:hover::after,
+a.head:hover::after{ content: " <<" }
+
+/**** Navbar **************************************************/
+
+.navbar{ /* Fixed navbar on left side of page */
+	position: fixed ; /* Follows us up and down */
+	height: 100% ; /* All the way up and down */
+	padding: 1em ;
+	overflow: hidden ; /* Helps with positioning too */
+	background-color: rgb(/*Text*/32,32,32)  ;
+	color: rgb(/*BGFade*/208,208,208) ;
+	font-size: 12pt ;
+	}
+
+/**** Main Content ********************************************/
+
+h1,h2{ /* All headers */
+	color: rgb(/*TextFade*/48,48,48) ;
+	text-shadow: rgb(/*BG*/255,255,255) 1px 1px 0px ;
+	margin: 0 ;
+	padding: 0 ;
+	display: inline ;
+	}
+
+h1{ /* Page headers */
+	font-family: UbuntuBold, Tahoma, Verdana, sans-serif ;
+	font-size: 50pt ;
+	}
+
+h2{ /* Section headers */
+	font-size: 26pt ;
+	border-color: rgb(/*Text*/32,32,32) ;
+	}
+
+.content{ /* Content section of a page */
+	padding: 2em ;
+	padding-top: 0em ;
+	background-color: rgb(/*BG*/224,224,224) ;
+	margin-left: 144px ; /* Decent minimum for navbar? */
+	}
+
+.standard{ /* Ordinary text blocks (with div) */
+	font-size: 12pt ;
+	padding-top: .5em ;
+	padding-bottom: .5em ;
+	line-height: 120%;
+	}
+
+/**** Code ****************************************************/
+
+code{ /* For small in-line code snippets (with span) */
+	font-family: DroidSansMono, monospace ;
+	font-size: 10pt ;
+	padding: .17em ;
+	padding-left: .4em ;
+	padding-right: .4em ;
+	background-color: rgb(/*TextFade*/48,48,48) ;
+	color: rgb(/*BG*/224,224,224) ;
+	box-shadow: inset rgb(0,0,0) 0 0px 6px ;
+	text-shadow: 1px 1px 1px rgb(0,0,0) ; 
+	border-radius: .3em ;
+	}
+
+.codeblock{ /* For large blocks of code/etc (with div) */
+	font-family: DroidSansMono, monospace ;
+	font-size: 11pt ;
+	padding: 12px ;
+	padding-left: 24px ;
+	padding-right: 24px ;
+	}
+
+/**** Styled Blocks *******************************************/
+
+.quoteblock,
+.warnblock,
+.depblock{
+	font-family: DroidSansMono, monospace ;
+	font-size: 11pt ;
+	padding: 1em ;
+	padding-top: 1.5em ;
+	padding-bottom: 1.5em ;
+	padding-right: 2em ;
+	margin: 1em ;
+	text-shadow: 1px 1px 1px rgb(0,0,0) ; /* Standard shadow */
+	border-radius: .5em ;
+	box-shadow: inset rgb(/*Text*/32,32,32) 0 0 10px ;
+	}
+
+.quotepip,
+.warnpip,
+.deppip{
+	font-family: DroidSerif ; /* Ubuntu symbols are shit */
+	float: left ;
+	padding: 0px ;
+	padding-top: 0px ;
+	}
+
+.quotebody,
+.warnbody,
+.depbody{
+	margin-left: 1.7em ; /* Trial and error */
+	padding-left: 2em ;
+	}
+
+/**** Quotes **************************************************/
+
+.quoteblock{ /* Main quote block */
+	color: rgb(/*TextFade*/208,208,208) ;
+	background-color: rgb(0,64,0) ; /* Backup color for IE6 and other trash */
+	background: linear-gradient(to bottom,   rgb(/*QuoteL*/0,96,0), rgb(/*QuoteD*/0,48,0)); /* Normal  */
+	background: -webkit-linear-gradient(top, rgb(/*QuoteL*/0,96,0), rgb(/*QuoteD*/0,48,0)); /* Safari  */
+	background: -o-linear-gradient(bottom,   rgb(/*QuoteL*/0,96,0), rgb(/*QuoteD*/0,48,0)); /* Opera   */
+	background: -moz-linear-gradient(bottom, rgb(/*QuoteL*/0,96,0), rgb(/*QuoteD*/0,48,0)); /* Firefox */
+	}
+
+.quotepip{
+	font-size: 72pt ;
+	color: rgb(0,40,0) ; /* Inset effect (dark center) */
+	height: 45px ; /* Yes, these are magic numbers */
+	margin-top: 30px ; /* Found by trial and error */
+	text-shadow: rgb(0,128,0) 1px 1px 0 ; /* Inset effect (light border) */
+	}
+
+.quotesub{ color: rgb(0,192,0) }
+
+/**** Warnings ************************************************/
+
+.warnblock{ /* Main warning block */
+	font-size: 10pt ;
+	color: rgb(/*TextFadeDarker*/192,192,192) ;
+	background-color: rgb(96,0,0) ; /* Backup color for IE6 and other trash */
+	background: linear-gradient(to bottom,   rgb(/*WarnL*/160,0,0), rgb(/*WarnD*/64,0,0)); /* Normal  */
+	background: -webkit-linear-gradient(top, rgb(/*WarnL*/160,0,0), rgb(/*WarnD*/64,0,0)); /* Safari  */
+	background: -o-linear-gradient(bottom,   rgb(/*WarnL*/160,0,0), rgb(/*WarnD*/64,0,0)); /* Opera   */
+	background: -moz-linear-gradient(bottom, rgb(/*WarnL*/160,0,0), rgb(/*WarnD*/64,0,0)); /* Firefox */
+	}
+
+.warnpip{
+	font-size: 40pt ;
+	color: rgb(40,0,0) ; /* Inset effect (dark center) */
+	height: 45px ; /* Yes, these are magic numbers */
+	margin-top: 14px ; /* Found by trial and error */
+	margin-left: 5px ;
+	text-shadow: rgb(192,0,0) 1px 1px 0 ; /* Inset effect (light border) */
+	font-weight: bold ;
+	}
+
+.warnsub{
+	text-shadow: 1px 1px 1px rgb(0,0,0) ; /* Standard shadow */
+	font-size: 12pt ;
+	color: rgb(248,8,8) ;
+	}
+
+/**** Deprecated Tag ******************************************/
+
+.depblock{ /* Main warning block */
+	font-family: DroidSansMono, Tahoma, Verdana, sans-serif;
+	font-size: 10pt ;
+	color: rgb(/*TextFadeDarker*/192,192,192) ;
+	background-color: rgb(64,64,64) ; /* Backup color for IE6 and other trash */
+	background: linear-gradient(to bottom,   rgb(/*DepL*/56,56,56), rgb(/*DepD*/32,32,32)); /* Normal  */
+	background: -webkit-linear-gradient(top, rgb(/*DepL*/56,56,56), rgb(/*DepD*/32,32,32)); /* Safari  */
+	background: -o-linear-gradient(bottom,   rgb(/*DepL*/56,56,56), rgb(/*DepD*/32,32,32)); /* Opera   */
+	background: -moz-linear-gradient(bottom, rgb(/*DepL*/56,56,56), rgb(/*DepD*/32,32,32)); /* Firefox */
+	}
+
+.deppip{
+	font-size: 26pt ;
+	font-family: DroidSerif ;
+	color: rgb(0,0,0) ; /* Inset effect (dark center) */
+	height: 45px ; /* Yes, these are magic numbers */
+	margin-top: 0px ; /* Found by trial and error */
+	margin-left: 4px ;
+	margin-right: .4em ;
+	text-shadow: rgb(80,80,80) 1px 1px 0 ; /* Inset effect (light border) */
+	font-weight: bold ;
+	}
+
+/**** DM Code *************************************************/
+
+.dmblock{ /* For blocks of code (with div) */
+	font-family: DroidSansMono, monospace ;
+	font-size: 10pt ;
+	padding: 1.5em ;
+	margin: 1em ;
+	background-color: rgb(/*TextFade*/48,48,48) ;
+	color: rgb(/*BGFade*/208,208,208) ;
+	box-shadow: inset rgb(0,0,0) 0 0 10px ;
+	border-radius: .5em ;
+	background: linear-gradient(to bottom,   rgb(/*TextFade*/48,48,48), rgb(/*Text*/32,32,32)); /* Normal  */
+	background: -webkit-linear-gradient(top, rgb(/*TextFade*/48,48,48), rgb(/*Text*/32,32,32)); /* Safari  */
+	background: -o-linear-gradient(bottom,   rgb(/*TextFade*/48,48,48), rgb(/*Text*/32,32,32)); /* Opera   */
+	background: -moz-linear-gradient(bottom, rgb(/*TextFade*/48,48,48), rgb(/*Text*/32,32,32)); /* Firefox */
+	}
+
+/* Syntax highlighting (with span) */
+.dmop{     color: rgb( 224, 224, 0   )}
+.dmprim{   color: rgb( 208, 128, 64  )}
+.dmdelimc{ color: rgb( 208, 128, 208 )}
+.dmbasic{  color: rgb( 96 , 176, 248 )}
+.dmcom{    color: rgb( 160, 160, 160 )}
+.dmnum{    color: rgb( 224, 32 , 32  )}
+.dmpp{     color: rgb( 0  , 192, 0   )}
+.dmstr{    color: rgb( 128, 192, 192 )}
+.dmhtml{   color: rgb( 64 , 160, 176 )}
+.dmmac{    color: rgb( 208, 192, 128 )}
+.dmctrl{   color: rgb( 224, 176, 0   )}
+.dmspec{   color: rgb( 208, 128, 64  )}
